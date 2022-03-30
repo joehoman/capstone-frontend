@@ -29,28 +29,30 @@ export default function ViewChecklist(){
     //fetches all tasks for user that was clicked on and sets Tasks
 
 
-    function taskHandler(e){
-       e.preventDefault()
-        fetch(`${process.env.REACT_APP_API_URL}/sponsor/addtask`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({"user_id": location.state.inboundObject.id, "task": description, "due_date": dueDate, "task_status": false}),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success', data);
-            window.location.reload()
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    };
+//change to patching
+
+    // function taskHandler(e){
+    //    e.preventDefault()
+    //     fetch(`${process.env.REACT_APP_API_URL}/sponsor/addtask`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({"user_id": location.state.inboundObject.id, "task": description, "due_date": dueDate, "task_status": false}),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Success', data);
+    //         window.location.reload()
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     });
+    // };
 
 
 
-
+//don't need to conditioinally render
     if (tasks !== false){
         //only render once fetch is complete
 
@@ -61,6 +63,8 @@ export default function ViewChecklist(){
             <p>{location.state.inboundObject.work_email}</p>
             <p>{location.state.inboundObject.personal_email}</p>
             <p>{location.state.inboundObject.phone_number}</p>
+{/*
+change to assigning sponsor */}
 
             <h1>Add Task</h1>
             <form onSubmit={taskHandler}>
@@ -75,20 +79,6 @@ export default function ViewChecklist(){
                 <button type="submit" className = "submitBtn">Add</button>
             </form>
 
-            <h1 className = "header">{`${inboundName}'s`} Tasks</h1>
-                {tasks[0].map((tasks, i) => {
-                    return(
-                        <li className="card">
-                            <>
-                                <button   className = "postButton" >
-                                    <h4 >{tasks.due_date} </h4>
-                                    <p>{tasks.task}</p>
-                                </button>
-                            </>
-                        </li>
-                    ) }
-                )}
-
             </div>
         </div>
         )
@@ -96,21 +86,5 @@ export default function ViewChecklist(){
     } else {
         return <h1> Internal Error </h1>;
     }
-
-
-
-
-
-
 }
-
-/*
-put in
-
-user id from state
-task is a description of the task
-task_status false
-due date should be 7/31/2022 format
-*/
-
 

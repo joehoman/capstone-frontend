@@ -5,68 +5,84 @@ import '../App.css';
 function Navbar(){
 
     // const [userInfo, setUserInfo] = useState(localStorage.getItem("userInfo"))
-    const [userInfo, setUserInfo] = useState('test')
+    const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem("userInfo")))
 
 
     // inbound
-    if (userInfo.privilege_level === 0){
+    if (userInfo){
+        // console.log(userInfo)
+        if (userInfo.role === "inbound"){
         return(
             <>
             <div className = "topnav">
                 <b>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        Home
+                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                        Dashboard
                     </Link>
                 </b>
-                <b>
-                    <Link to="/checklist" style={{ textDecoration: 'none' }}>
+                {/* <b>
+                    <Link to="/inboundchecklist" style={{ textDecoration: 'none' }}>
                         Checklist
                     </Link>
-                </b>
-                <b>
-                    <Link to="/logout" style={{ textDecoration: 'none' }}>
-                        Logout
-                    </Link>
-                </b>
+                </b> */}
+                    <b>
+                        <Link to="/logout" style={{ textDecoration: 'none' }}>
+                            Logout
+                        </Link>
+                    </b>
             </div>
             </>
         )
-    }
+        }
+
 
     //sponsor
-    if (userInfo.privilege_level === 1){
-        return(
-            <>
-            <div className = "topnav">
-                <b>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        Home
-                    </Link>
-                    <Link to="/assigned" style={{ textDecoration: 'none' }}>
-                        Assigned
-                    </Link>
-                    <Link to="/logout" style={{ textDecoration: 'none' }}>
-                        Logout
-                    </Link>
-                </b>
-            </div>
-            </>
-        )
-    }
 
-    //css
-    if (userInfo.privilege_level === 2){
-        return(
-            <>
-            <div className = "topnav">
-                <b>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        Home
-                    </Link>
-                </b>
-            </div>
-            </>
-        )
+        if (userInfo.role === "sponsor"){
+            return(
+                <>
+                <div className = "topnav">
+                    {/* <b>
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            Home
+                        </Link>
+                    </b> */}
+                    <b>
+                        <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                            Dashboard
+                        </Link>
+                    </b>
+                    <b>
+                        <Link to="/logout" style={{ textDecoration: 'none' }}>
+                            Logout
+                        </Link>
+                    </b>
+                </div>
+                </>
+            )
+        }
+
+        // admin
+        if (userInfo.role === "admin"){
+            return(
+                <>
+                <div className = "topnav">
+                    <b>
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            Home
+                        </Link>
+                    </b>
+                    <div>
+                    <b>
+                        <Link to="/logout" style={{ textDecoration: 'none' }}>
+                            Logout
+                        </Link>
+                    </b>
+                    </div>
+                </div>
+                </>
+            )
+        }
     }
 
     //user isn't logged in
@@ -74,11 +90,13 @@ function Navbar(){
         return(
             <>
             <div className = "topnav">
+
                 <b>
                     <Link to="/" style={{ textDecoration: 'none' }}>
                         Home
                     </Link>
                 </b>
+                <div>
                 <b>
                     <Link to="/register" style={{ textDecoration: 'none' }}>
                         Register
@@ -89,6 +107,7 @@ function Navbar(){
                         Login
                     </Link>
                 </b>
+                </div>
             </div>
             </>
         )
