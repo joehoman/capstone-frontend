@@ -30,8 +30,68 @@ color:white
   color: white;
 }
 
+.checklistWrapper {
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.checklistWelcome{
+  text-align: center;
+  width: 75%;
+  margin: 40px 0;
+  padding: 5px 50px;
+  border: 2px solid;
+}
+
+
+.checkList-form{
+  padding: 50px 50px;
+  margin: 30px 0;
+  box-shadow: 0 0 15px 2px gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+.checklistTasks{
+  /* margin: 30px 0; */
+  border: 2px solid;
+  width: 70%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+
+
+.assignedWrapper{
+  width:90%;
+  height: 100vh;
+  margin: 0 auto;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.assignedWelcome{
+  text-align: center;
+  width: 75%;
+  margin: 40px 0;
+  padding: 5px 50px;
+  border: 2px solid;
+}
+
+
 .inboundWrapper {
   width:90%;
+  height: 100vh;
   margin: 0 auto;
   display:flex;
 }
@@ -42,17 +102,50 @@ color:white
   margin: 40px 0;
   padding: 5px 50px;
   border: 2px solid;
+}
+
+.inboundTasks {
+  border-left: 2px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 20 5px; */
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+.postButton{
+  width: 200px;
+}
+
+.card {
+  list-style-type: none;
+  width: 200px;
+  border: 2px solid;
+  padding: 0 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
-.inboundTasks{
 
-
+.task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .inboundSponsor{
   width: 75%;
   margin: 15px 0;
   padding: 5px 50px;
+
 
 }
 

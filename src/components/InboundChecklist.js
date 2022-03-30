@@ -19,26 +19,23 @@ export default function Checklist() {
     if (tasks !== false){
 
         return (
-            <div className="inboundTasks">
+            <>
             <div className="column">
             <h2 className = "header">My Tasks</h2>
                 {tasks[0].map((tasks, i) => {
                     return(
                         <li className="card">
-                            <>
-                                <button   className = "postButton" >
+                                <div  className = "task" >
                                     <h3> {tasks.task}</h3>
                                     <h4>Due date: {tasks.due_date} </h4>
-
-                                </button>
-                            </>
+                                </div>
                         </li>
 
                     )
                 })}
 
             </div>
-        </div>
+        </>
         )
 
     } else {

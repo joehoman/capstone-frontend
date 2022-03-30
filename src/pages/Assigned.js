@@ -21,7 +21,7 @@ export default function Assigned() {
         //fetch all tasks based on work email neex to add backend method and fix URL
         fetch(`${process.env.REACT_APP_API_URL}/sponsor/user/${userInfo.id}`)
         .then(response => response.json())
-        .then(response => setInbounds([response]))
+        .then(response => setInbounds(response))
         .catch((err) => console.error(err))
 },[]);
 
@@ -34,26 +34,28 @@ const clickHandler = (inboundObject) => {
 if (inbounds){
 
     return (
-        <div className="row">
-        <div className="column">
-            <h1>Welcome {userInfo.rank} {userInfo.lastName}</h1>
-            <p>This is your sponsor dashboard. Please select an inbound Guardian to review their information or assign them additional tasks.</p>
-        <h1 className = "header">My Inbounds</h1>
-            {inbounds[0].map((inbounds, i) => {
-                return(
-                    <div className="card">
-                        <>
-                            <button   onClick = {() => clickHandler(inbounds)} className = "postButton" >
-                                <h4  >{`${inbounds.rank} ${inbounds.first_name} ${inbounds.last_name}`} </h4>
-                            </button>
-                        </>
-                    </div>
 
-                )
-            })}
+        <div className="assignedWrapper">
+            <div className="assignedWelcome">
+                <h1>Welcome {userInfo.rank} {userInfo.lastName}</h1>
+                <p>This is your sponsor dashboard. Please select an inbound Guardian to review their information or assign them additional tasks.</p>
+            </div>
+
+            <h1 className = "header">My Inbounds</h1>
+                {inbounds.map((i) => {
+                    return(
+                        <div className="assignedCard">
+                            <>
+                                <button   onClick = {() => clickHandler(i)} className = "postButton" >
+                                    <h4  >{`${i.rank} ${i.first_name} ${i.last_name}`} </h4>
+                                </button>
+                            </>
+                        </div>
+
+                    )
+                })}
 
         </div>
-    </div>
     )
 
 } else {

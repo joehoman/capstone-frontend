@@ -2,6 +2,7 @@
 
 import {useState, useEffect} from 'react';
 import React, { Link, useNavigate, useLocation } from 'react-router-dom';
+import { RuxButton, RuxInput, RuxSelect, RuxOption} from '@astrouxds/react'
 
 
 export default function ViewChecklist(){
@@ -55,46 +56,48 @@ export default function ViewChecklist(){
         //only render once fetch is complete
 
         return (
-            <div className="row">
-            <div className="column">
-            <h1 className = "header">{`${inboundName}'s`} Contact Info</h1>
-            <p>{location.state.inboundObject.work_email}</p>
-            <p>{location.state.inboundObject.personal_email}</p>
-            <p>{location.state.inboundObject.phone_number}</p>
+            <div className="inboundWrapper">
+                 <div className="inboundLeft">
+                    <div className="checklistWelcome">
+                        <h1 className = "header">{`${inboundName}'s`} Contact Info</h1>
+                        <p>{location.state.inboundObject.work_email}</p>
+                        <p>{location.state.inboundObject.personal_email}</p>
+                        <p>{location.state.inboundObject.phone_number}</p>
+                    </div>
 
-            <h1>Add Task</h1>
-            <form onSubmit={taskHandler}>
-                 <p>
-                    <label>Task Description</label>
-                    <  input  onChange={(e) => setDescription(e.target.value)} type="text" />
-                </p>
-                <p>
-                    <label>Due Date</label>
-                    <  input  onChange={(e) => setDueDate(e.target.value)} type="text" />
-                </p>
-                <button type="submit" className = "submitBtn">Add</button>
-            </form>
-
-            <h1 className = "header">{`${inboundName}'s`} Tasks</h1>
-                {tasks[0].map((tasks, i) => {
-                    return(
-                        <li className="card">
-                            <>
-                                <button   className = "postButton" >
-                                    <h4 >{tasks.due_date} </h4>
-                                    <p>{tasks.task}</p>
-                                </button>
-                            </>
-                        </li>
-                    ) }
-                )}
-
+                    <div className="forms">
+                        <div className = "login-form">
+                            <h2>Add Task</h2>
+                            <form onSubmit={taskHandler}>
+                                <div>
+                                    <RuxInput label="Task Description" onRuxinput={(e) => setDescription(e.target.value)} type="text" />
+                                </div>
+                                <div>
+                                    <RuxInput label="Due Date" onRuxinput={(e) => setDueDate(e.target.value)} type="text" />
+                                </div>
+                                <button type="submit" className = "submitBtn">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div className="inboundTasks">
+                    <h2 className = "header">{`${inboundName}'s`} Tasks</h2>
+                        {tasks[0].map((tasks, i) => {
+                            return(
+                                <li className="card">
+                                    <div className = "task" >
+                                        <h3>{tasks.task}</h3>
+                                        <h4 >Due Date: {tasks.due_date} </h4>
+                                    </div>
+                                </li>
+                            ) }
+                        )}
+                    </div>
             </div>
-        </div>
         )
 
     } else {
-        return <h1> Internal Error </h1>;
+        return <h1> Loading... </h1>;
     }
 
 
