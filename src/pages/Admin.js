@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { RuxTabs, RuxTab, RuxTabPanels, RuxTabPanel, RuxOption, RuxSelect } from '@astrouxds/react';
+
+//COMPONENTS
 import UserDetails from '../components/UserDetails.js';
 
+//STYLING
+import { RuxTabs, RuxTab, RuxTabPanels, RuxTabPanel, RuxOption, RuxSelect } from '@astrouxds/react';
 import {
     Box,
     Grid,
@@ -11,7 +14,7 @@ import {
 
 export default function AdminDashboard(){
 
-    const [allUsers, setAllUsers] = useState(false)
+    const [allUsers, setAllUsers] = useState(['test'])
     const [unassigned, setUnassigned] = useState(false)
     const [inbound, setInbound] = useState(false)
     const [sponsor, setSponsor] = useState(false)
@@ -20,9 +23,20 @@ export default function AdminDashboard(){
     useEffect(function(){
         fetch(`${process.env.REACT_APP_API_URL}/users`)
         .then(response => response.json())
-        .then(response => setAllUsers(response))
-        // .then(response => window.location.reload())
-        .then(setLists())
+        .then(response => {
+            setAllUsers([...response])
+            setLists()
+            console.log('litttle string', allUsers)
+        })
+        // .then(response => {
+        //     console.log('allUsers', allUsers)
+        //     console.log('response', response)
+        //     return response
+        // })
+        // .then(response => {
+        //     setLists()
+        //     // setTimeout(() => console.log('log in fetch', unassigned, sponsor, inbound), 5000)
+        // })
         // .then(console.log("unassigned:" unassigned "Inbound:" inbound "sponsor:" sponsor))
         .catch((err) => console.error(err))
     },[]);
@@ -46,6 +60,7 @@ export default function AdminDashboard(){
     }
 
     function inboundRender(){
+
         return currentGuardianList !== 'inbound_guardians' ? null : (
             <>
             <h3>Inbound Guardians:</h3>
@@ -59,10 +74,13 @@ export default function AdminDashboard(){
                     ))}
                 </Grid>
             </>
+
+
         )
     }
 
     function sponsorRender(){
+
         return currentGuardianList !== 'sponsor_guardians' ? null : (
             <>
             <h3>Sponsor Guardians:</h3>
@@ -82,6 +100,7 @@ export default function AdminDashboard(){
 
 
     function setLists() {
+        console.log('set list started')
         const inboundArray = [];
         const sponsorArray = [];
         const unassignedArray =[]
@@ -113,13 +132,13 @@ export default function AdminDashboard(){
 
     return allUsers ? (
          <>
-            <h2>admin page</h2>
+            <h2>Administrator page</h2>
+            <br></br>
+            <p>Please select a list in the drop down menu to view or make changes to any given member within it.</p>
             <Box data-testid="grid-container" sx={{ flexGrow: 1, paddingTop: 8, paddingBottom: 8 }}>
-
-                <br></br>
                 <div className = 'userList'>
                     <RuxSelect label= "Select Guardian List" name="rank" id="rank" onRuxchange={(e) => setCurrentGuardianList(e.target.value)}>
-                        <RuxOption value="" label = "Please choose a list to view or assign members"></RuxOption>
+                        <RuxOption value="" label = "select a list here..."></RuxOption>
                         <RuxOption value="unassigned_guardians" label="Unassigned Guardians"></RuxOption>
                         <RuxOption value="inbound_guardians" label ="Inbound Guardians"></RuxOption>
                         <RuxOption value="sponsor_guardians" label ="Sponsor Guardians"></RuxOption>
@@ -137,48 +156,4 @@ export default function AdminDashboard(){
     )
 }
 
-        // <div style="display: flex; flex-flow: column;">
-        //     <div style="border: rgba(255,255,255, .25) dashed 1px; margin: 1vw 1vw 0; padding: 2px;">
-        //         <RuxTabs id="tab-set-id-2" small="">
-        //             <RuxTab id="tab-id-2-1">Unassigned</RuxTab>
-        //             <RuxTab id="tab-id-2-2">Inbound</RuxTab>
-        //             <RuxTab id="tab-id-2-2">Sponsors</RuxTab>
-        //             <RuxTab id="tab-id-2-3" disabled="">Tab 3 (disabled)</RuxTab>
-        //         </RuxTabs>
-        //             <RuxTabPanels aria-labelledby="tab-set-id-2">
-        //              <RuxTabPanel aria-labelledby="tab-id-2-1">
-        //                 <pre style="padding: 1vw; border: rgba(255,255,255, .15) dashed 1px; margin: 0;">&lt;<span>!-- Small tab 1 HTML content --</span>&gt;</pre>
-        //             </RuxTabPanel>
-        //             <RuxTabPanel aria-labelledby="tab-id-2-2">
-        //                 <pre style="padding: 1vw; border: rgba(255,255,255, .15) dashed 1px; margin: 0;">&lt;<span>!-- Small tab 2 HTML content --</span>&gt;</pre>
-        //             </RuxTabPanel>
-        //             <RuxTabPanel aria-labelledby="tab-id-2-3">
-        //                 <pre style="padding: 1vw; border: rgba(255,255,255, .15) dashed 1px; margin: 0;">&lt;<span>!-- Small tab 3 HTML content --</span>&gt;</pre>
-        //             </RuxTabPanel>
-        //         </RuxTabPanels>
-        //     </div>
-        // </div>
 
-//         <div style={"display": flex "flex-flow": column}>
-//     <div style={"border": rgba(255,255,255, .25) dashed 1px; "margin": 1vw 1vw 0; "padding": 2px;}>
-//         <rux-tabs id="tab-set-id-2" small="">
-//             <rux-tab id="tab-id-2-1">Tab 1</rux-tab>
-//             <rux-tab id="tab-id-2-2">Tab 2</rux-tab>
-//             <rux-tab id="tab-id-2-3" disabled="">Tab 3 (disabled)
-//             </rux-tab>
-//         </rux-tabs>
-//         <rux-tab-panels aria-labelledby="tab-set-id-2">
-//             <rux-tab-panel aria-labelledby="tab-id-2-1">
-//                 <pre style={"padding:" 1vw; "border": rgba(255,255,255, .15) dashed 1px; "margin:" 0;}>&lt;<span>!-- Small tab 1 HTML content --</span>&gt;</pre>
-//             </rux-tab-panel>
-//             <rux-tab-panel aria-labelledby="tab-id-2-2">
-//                 <pre style={"padding:" 1vw; "border": rgba(255,255,255, .15) dashed 1px; "margin:" 0;}>&lt;<span>!-- Small tab 2 HTML content --</span>&gt;</pre>
-//             </rux-tab-panel>
-//             <rux-tab-panel aria-labelledby="tab-id-2-3">
-//                 <pre style={"padding:" 1vw; "border": rgba(255,255,255, .15) dashed 1px; "margin:" 0;}>&lt;<span>!-- Small tab 3 HTML content --</span>&gt;</pre>
-//             </rux-tab-panel>
-//         </rux-tab-panels>
-//     </div>
-// </div>
-    // )
-// }
