@@ -17,7 +17,7 @@ import {
 export default function Inbound() {
 
     const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem("userInfo")))
-    const [sponsorInfo, setSponsorInfo] = useState({});
+    const [sponsorInfo, setSponsorInfo] = useState(false);
 
 
     useEffect(function(){
@@ -28,7 +28,7 @@ export default function Inbound() {
         .catch((err) => console.error(err))
     }, []);
 
-    return sponsorInfo ? (
+    return sponsorInfo !== false ? (
         <>
         <div className="inboundWrapper">
             <div className="inboundLeft">
