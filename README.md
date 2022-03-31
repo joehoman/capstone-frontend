@@ -15,15 +15,28 @@ This project was designed with the intent of replacing the paper in-processing c
 
 ##  🚚 Website in Use
 Here is an image of the Home Page:
+![image](https://user-images.githubusercontent.com/96899068/161108646-f58bf429-6df4-4e78-af90-4c217d746feb.png)
 
 
 Here is an image of the inbound guardian's dashboard: 
+![image](https://user-images.githubusercontent.com/96899068/161109431-ea36bfef-719f-4c21-b65d-7b7c2706e20a.png)
 
 
 Here is an image of the sponsor's dashboard:
+![image](https://user-images.githubusercontent.com/96899068/161109600-ae4c57aa-c5ef-4710-b43c-2af7d86f019e.png)
+
+Here is an image of a specific inbound after the sponsor clicks on their name:
+![image](https://user-images.githubusercontent.com/96899068/161109790-3fc8c298-9e74-435b-bc1d-7e23980953c9.png)
 
 
 Here is an image of the admin's dashboard: 
+![image](https://user-images.githubusercontent.com/96899068/161110036-33593a4f-bf70-4986-86aa-f3c3817d9e54.png)
+
+Here is an image of the admin viewing unassigned guardians:
+![image](https://user-images.githubusercontent.com/96899068/161110180-6ef5f497-606e-40f3-ae9c-fa6f0cb29c69.png)
+
+Here is an image of the admin being able to assign someone to a sponsor:
+![image](https://user-images.githubusercontent.com/96899068/161110232-1cf0c3b3-226b-4e9d-86ec-7da3aac41d4b.png)
 
 
 
