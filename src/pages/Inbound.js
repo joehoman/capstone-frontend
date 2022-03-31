@@ -55,13 +55,22 @@ export default function Inbound() {
         </>
     ) : (
         <>
-            <h2>Welcome {userInfo.rank} {userInfo.lastName}</h2>
-            <p>Welcome to your new Space Force Base! Please navigate through your in-processing checklist below at your earliest convenience.
-            For additional information, we have assigned you a sponsor. Please reach out to them for any questions you may have.</p>
-            <br></br>
-            <h3>Sponsor Details:</h3>
-            <h4>Sponsor has yet to be assigned</h4>
-            <InboundChecklist />
+        <div className="inboundWrapper">
+            <div className="inboundLeft">
+                <div className="inboundWelcome">
+                    <h2>Welcome {userInfo.rank} {userInfo.lastName}</h2>
+                    <p>This is your inbound dashboard. Please navigate through your in-processing checklist below.
+                        For any additional information, we have assigned you a sponsor. Please reach out to them with any questions you may have.</p>
+                </div>
+                <div className="inboundSponsor">
+                    <h3>Sponsor Details:</h3>
+                    Sponsor has yet to be assigned
+                </div>
+            </div>
+            <div className="inboundTasks">
+                <InboundChecklist />
+            </div>
+        </div>
         </>
         )
     }

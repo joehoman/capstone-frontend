@@ -24,13 +24,10 @@ export default function Checklist() {
             <h2 className = "header">My Tasks</h2>
                 {tasks[0].map((tasks, i) => {
                     return(
-                        <li className="card">
-                                <div  className = "task" >
-                                    <h3> {tasks.task}</h3>
-                                    <h4>Due date: {tasks.due_date} </h4>
-                                </div>
-                        </li>
-
+                        <div  className = "task" >
+                            <h3> {tasks.task}</h3>
+                            <h4>Due date: {tasks.due_date} </h4>
+                        </div>
                     )
                 })}
 

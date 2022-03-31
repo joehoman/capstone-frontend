@@ -16,7 +16,7 @@ export default function () {
             </div>
             {/* <div className = "homeWrap"> */}
                 <div className ="homeSponsor">
-                    <h3> Sponsors, please login to help your fellow Guardian with their upcoming move. </h3>
+                    <h3> Guardians, please login to access your account. </h3>
                     <Link to="/login">
                         <RuxButton type="button" >Login</RuxButton>
                     </Link>
@@ -24,7 +24,7 @@ export default function () {
 
                 </div>
                 <div class = 'homeInbound'>
-                    <h3> Inbound Guardians, please sign up to get your sponsor's contact information and start working on your in-processing checklist.</h3>
+                    <h3> Unregistered Guardians, please sign up to get your sponsor's contact information and start working on your in-processing checklist. To recieve sponsor status, contact your CSS.</h3>
                     <Link to="/register">
                         <RuxButton type="button" >Sign Up</RuxButton>
                     </Link>

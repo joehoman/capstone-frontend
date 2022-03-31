@@ -46,7 +46,7 @@ export default function AdminDashboard(){
                 console.log('Sponsor Array', sponsorArray)
 
             }
-            if (allUsers[i].sponsor_id === null) {
+            if (allUsers[i].sponsor_id === null && allUsers[i].role === "inbound" ) {
                 unassignedArray.push(allUsers[i])
                 console.log('unassigned array', unassignedArray)
             }
@@ -68,8 +68,8 @@ export default function AdminDashboard(){
     }
 
 
-     const sponsorClickHandler = (inboundObject) => {
-        navigate("/assigned/inbound/details", {state:{inboundObject:inboundObject}})
+     const sponsorClickHandler = (sponsorObject) => {
+        navigate("/admin/sponsor/details", {state:{sponsorObject:sponsorObject}})
     }
 
 
@@ -96,18 +96,16 @@ export default function AdminDashboard(){
         return currentGuardianList !== 'inbound_guardians' ? null : (
             <>
             <h3>Inbound Guardians:</h3>
-                <Grid container spacing={3} justifyContent="center">
+                <Grid justifyContent="center" >
                     {inbound.map((i) => (
                         <>
-                            <Grid item xs={8} onClick = {() => inboundClickHandler(i)}>
+                            <Grid sx={{paddingTop: 2, paddingBottom: 2}} item xs={8} onClick = {() => inboundClickHandler(i)}>
                                 <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
                             </Grid>
                         </>
                     ))}
                 </Grid>
             </>
-
-
         )
     }
 
@@ -119,7 +117,7 @@ export default function AdminDashboard(){
                 <Grid container spacing={3} justifyContent="center">
                     {sponsor.map((i) => (
                         <>
-                            <Grid item xs={8} >
+                            <Grid item xs={8} onClick = {() => sponsorClickHandler(i)}>
                                 <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
                             </Grid>
                         </>
@@ -130,25 +128,32 @@ export default function AdminDashboard(){
     }
 
     return allUsers ? (
+
          <>
-            <h2>Administrator page</h2>
-            <br></br>
-            <p>Please select a list in the drop down menu to view or make changes to any given member within it.</p>
-            <Box data-testid="grid-container" sx={{ flexGrow: 1, paddingTop: 8, paddingBottom: 8 }}>
-                <div className = 'userList'>
-                    <RuxSelect label= "Select Guardian List" name="rank" id="rank" onRuxchange={(e) => setCurrentGuardianList(e.target.value)}>
-                        <RuxOption value="" label = "select a list here..."></RuxOption>
-                        <RuxOption value="unassigned_guardians" label="Unassigned Guardians"></RuxOption>
-                        <RuxOption value="inbound_guardians" label ="Inbound Guardians"></RuxOption>
-                        <RuxOption value="sponsor_guardians" label ="Sponsor Guardians"></RuxOption>
-                   </RuxSelect>
-                 </div>
-                {unassignedRender()}
-                {inboundRender()}
-                {sponsorRender()}
+            <div className = "adminWrapper">
+                <div className = "adminWelcome">
+                    <h2>Administrator page</h2>
+                    <br></br>
+                    <p>Please select a list in the drop down menu to view or make changes to any given member within it.</p>
+                </div>
+                <div className = "adminList">
+                    <div className = 'userList'>
+                        <RuxSelect label= "Select Guardian List" name="rank" id="rank" onRuxchange={(e) => setCurrentGuardianList(e.target.value)}>
+                            <RuxOption value="" label = "select a list here..."></RuxOption>
+                            <RuxOption value="unassigned_guardians" label="Unassigned Guardians"></RuxOption>
+                            <RuxOption value="inbound_guardians" label ="Inbound Guardians"></RuxOption>
+                            <RuxOption value="sponsor_guardians" label ="Sponsor Guardians"></RuxOption>
+                        </RuxSelect>
+                    </div>
+                    <Box data-testid="grid-container" sx={{ flexGrow: 1, paddingTop: 8, paddingBottom: 8 }}>
+                        {unassignedRender()}
+                        {inboundRender()}
+                        {sponsorRender()}
 
-            </Box>
+                     </Box>
 
+                </div>
+            </div>
         </>
     ) : (
         <div>Error loading</div>

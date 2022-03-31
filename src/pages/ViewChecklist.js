@@ -49,12 +49,8 @@ export default function ViewChecklist(){
         });
     };
 
-
-
-
     if (tasks !== false){
         //only render once fetch is complete
-
         return (
             <div className="inboundWrapper">
                  <div className="inboundLeft">
@@ -65,7 +61,7 @@ export default function ViewChecklist(){
                         <p>{location.state.inboundObject.phone_number}</p>
                     </div>
 
-                    <div className="forms">
+                    {/* <div className="forms"> */}
                         <div className = "checklist-form">
                             <h2>Add Task</h2>
                             <form onSubmit={taskHandler}>
@@ -75,45 +71,28 @@ export default function ViewChecklist(){
                                 <div>
                                     <RuxInput label="Due Date" onRuxinput={(e) => setDueDate(e.target.value)} type="text" />
                                 </div>
-                                <button type="submit" className = "submitBtn">Add</button>
+                                    <button type="submit" className = "submitBtn">Add</button>
                             </form>
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
                 <div className="inboundTasks">
                     <h2 className = "header">{`${inboundName}'s`} Tasks</h2>
                         {tasks[0].map((tasks, i) => {
                             return(
-                                <li className="card">
-                                    <div className = "task" >
-                                        <h3>{tasks.task}</h3>
-                                        <h4 >Due Date: {tasks.due_date} </h4>
-                                    </div>
-                                </li>
-                            ) }
+                                <div className = "task" >
+                                    <h3>{tasks.task}</h3>
+                                    <h4 >Due Date: {tasks.due_date} </h4>
+                                </div>
+                            )}
                         )}
                     </div>
             </div>
         )
 
     } else {
-        return <h1> Loading... </h1>;
+        return <h1> Internal Error </h1>;
     }
-
-
-
-
-
-
 }
-
-/*
-put in
-
-user id from state
-task is a description of the task
-task_status false
-due date should be 7/31/2022 format
-*/
 
 

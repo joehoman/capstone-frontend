@@ -13,6 +13,7 @@ import Assigned from './pages/Assigned.js';
 import ViewChecklist from './pages/ViewChecklist.js';
 import InboundChecklist from './components/InboundChecklist.js';
 import AdminClickUnassigned from './pages/AdminPages/AdminClickUnassigned.js';
+import AdminClickSponsor from './pages/AdminPages/AdminClickSponsor.js';
 // import Config from './pages/Config.js';
 // import Assigned from './pages/Assigned.js';
 // import ViewChecklist from './pages/ViewChecklist.js';
@@ -40,6 +41,7 @@ return (
       <Route path = '/assigned/inbound/details' element = {<ViewChecklist/>} />
       <Route path = '/inboundchecklist' element = {<InboundChecklist />} />
       <Route path = '/admin/unassigned/details' element = {<AdminClickUnassigned/>} />
+      <Route path = '/admin/sponsor/details' element = {<AdminClickSponsor/>} />
       {/* <Route path = '/config' element = {<Config />} />
       <Route path = '/assigned' element = {<Assigned />} />
        <Route path = '/viewchecklist' element = {<ViewChecklist />} /> */}

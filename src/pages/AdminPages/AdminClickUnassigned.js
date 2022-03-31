@@ -22,7 +22,6 @@ export default function AdminClickUnassigned(){
 
 //gets all sponsors
     useEffect(function(){
-        //fetch all tasks based on work email neex to add backend method and fix URL
         fetch(`${process.env.REACT_APP_API_URL}/admin/getsponsors`)
         .then(response => response.json())
         .then(response => setSponsors(response))
@@ -41,8 +40,8 @@ export default function AdminClickUnassigned(){
         .then(response => response.json())
         .then(data => {
             console.log('Success', data);
-            window.location.reload()
         })
+        .then(navigate('/dashboard'))
         .catch((error) => {
             console.error('Error:', error);
         });
@@ -53,18 +52,21 @@ export default function AdminClickUnassigned(){
     if (sponsors !== false) {
         console.log('sponsors;', sponsors)
         console.log('state', location.state.inboundObject)
-        return (
-            <div className="row">
-            <div className="column">
-            <h1 className = "header"> {inboundName}'s' Contact Info</h1>
-            <p>{location.state.inboundObject.work_email}</p>
-            <p>{location.state.inboundObject.personal_email}</p>
-            <p>{location.state.inboundObject.phone_number}</p>
 
-            <h1>Clicking a Sponsor Will Assign Them To {inboundName} </h1>
+        return (
+
+            <div className="column">
+            <div className="row">
+                <h1 className = "header"> {inboundName}'s' Contact Info</h1>
+                <p>{location.state.inboundObject.work_email}</p>
+                <p>{location.state.inboundObject.personal_email}</p>
+                <p>{location.state.inboundObject.phone_number}</p>
+
+
+            <h2>Clicking a Sponsor Will Assign Them To {inboundName} </h2>
             {sponsors.map((i) => {
                     return(
-                        <li className="card">
+                        <ul className="card">
                             <>
                                 <button onClick = {() => patchHandler(i)} className = "postButton"    >
                                     <h4 >{i.rank} </h4>
@@ -72,13 +74,13 @@ export default function AdminClickUnassigned(){
                                     <h4 >{i.last_name} </h4>
                                 </button>
                             </>
-                        </li>
+                        </ul>
                     ) }
                 )}
-            </div>
+        </div>
         </div>
         )
                     }
-        else{return <h1>loading</h1>}
+        else{return <h1>Internal Error</h1>}
 }
 

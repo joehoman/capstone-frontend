@@ -68,8 +68,8 @@ function Navbar(){
                 <>
                 <div className = "topnav">
                     <b>
-                        <Link to="/" style={{ textDecoration: 'none' }}>
-                            Home
+                        <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                            Dashboard
                         </Link>
                     </b>
                     <div>

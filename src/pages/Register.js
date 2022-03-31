@@ -73,15 +73,15 @@ export default function Register (){
                 <div className = 'rankRegister'>
                     <RuxSelect label= "Rank" name="rank" id="rank" onRuxchange={(e) => setRank(e.target.value)}>
                         <RuxOption value=" " label = " "> </RuxOption>
-                        <RuxOption value="Specialist 1" label="Specialist 1"></RuxOption>
-                        <RuxOption value="Specialist 2" label ="Specialist 2"> </RuxOption>
-                        <RuxOption value="Specialist 3" label ="Specialist 3"> </RuxOption>
-                        <RuxOption value="Specialist 4"label ="Specialist 4"> </RuxOption>
-                        <RuxOption value="Sergeant" label="Sergeant"></RuxOption>
-                        <RuxOption value="Technical Sergeant" label ="Technical Sergeant"> </RuxOption>
-                        <RuxOption value="Master Sergeant" label ="Master Sergeant"> </RuxOption>
-                        <RuxOption value="Senior Master Sergeant" label ="Senior Master Sergeant"> </RuxOption>
-                        <RuxOption value="Chief Master Sergeant" label ="Chief Master Sergeant"></RuxOption>
+                        <RuxOption value="Spc 1" label="Specialist 1"></RuxOption>
+                        <RuxOption value="Spc 2" label ="Specialist 2"> </RuxOption>
+                        <RuxOption value="Spc 3" label ="Specialist 3"> </RuxOption>
+                        <RuxOption value="Spc 4"label ="Specialist 4"> </RuxOption>
+                        <RuxOption value="Sgt" label="Sergeant"></RuxOption>
+                        <RuxOption value="TSgt" label ="Technical Sergeant"> </RuxOption>
+                        <RuxOption value="MSgt" label ="Master Sergeant"> </RuxOption>
+                        <RuxOption value="SMSgt" label ="Senior Master Sergeant"> </RuxOption>
+                        <RuxOption value="CMSgt" label ="Chief Master Sergeant"></RuxOption>
                    </RuxSelect>
                  </div>
 
