@@ -60,7 +60,7 @@ The following dependencies need to be installed with ``` npm install ```
 Make a .env file and set the CONNECTION_STRING to equal the location of your database. 
 
 ### 🤓 Database Requirements
-ZaaS uses a PostgreSQL docker container. Tables are created programaticly, but you will have to create the database throught the psql CLI.
+Embark uses a PostgreSQL docker container. Tables are created programaticly, but you will have to create the database throught the psql CLI.
 1. Pull the PostgreSQL docker container.
 
     ``` docker pull postgres ```
