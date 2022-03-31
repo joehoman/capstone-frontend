@@ -4,10 +4,12 @@ import {useState, useEffect} from 'react';
 import React, { Link, useNavigate, useLocation } from 'react-router-dom';
 
 
-// export default function AdminClickUnassigned(){
+export default function AdminClickUnassigned(){
 
     const location = useLocation();
     const navigate = useNavigate();
+    const [sponsors, setSponsors] = useState(false)
+    const [inboundName, setInboundName] = useState(`${location.state.inboundObject.rank} ${location.state.inboundObject.first_name} ${location.state.inboundObject.last_name}`)
     //used for passing object through router
 
     // const [inboundName, setInboundName] = useState(`${location.state.inboundObject.rank} ${location.state.inboundObject.first_name} ${location.state.inboundObject.last_name}`)
@@ -23,52 +25,48 @@ import React, { Link, useNavigate, useLocation } from 'react-router-dom';
         //fetch all tasks based on work email neex to add backend method and fix URL
         fetch(`${process.env.REACT_APP_API_URL}/admin/getsponsors`)
         .then(response => response.json())
-        .then(response => setInbounds(response))
+        .then(response => setSponsors(response))
         .catch((err) => console.error(err))
     },[]);
 
-
-//change to patching
-
-    // function patchHandler(e){
-    //    e.preventDefault()
-    //     fetch(`${process.env.REACT_APP_API_URL}/sponsor/addtask`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({"user_id": location.state.inboundObject.id, "task": description, "due_date": dueDate, "task_status": false}),
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log('Success', data);
-    //         window.location.reload()
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error:', error);
-    //     });
-    // };
+    function patchHandler(i){
+       console.log('should be clicked on sponsor', i)
+        fetch(`${process.env.REACT_APP_API_URL}/admin/sponsorid`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"sponsor_id": i.id , "id": location.state.inboundObject.id}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success', data);
+            window.location.reload()
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    };
 
 
 
-//don't need to conditioinally render
-        //only render once fetch is complete
-
+    if (sponsors !== false) {
+        console.log('sponsors;', sponsors)
+        console.log('state', location.state.inboundObject)
         return (
             <div className="row">
             <div className="column">
-            <h1 className = "header"> Clicked User's Contact Info</h1>
-            <p>{inboundObject.work_email}</p>
-            <p>{inboundObject.personal_email}</p>
-            <p>{inboundObject.phone_number}</p>
-{/*
-change to assigning sponsor */}
-            <h1>Add A Sponsor to Clicked User</h1>
-            {sponsors[0].map((i) => {
+            <h1 className = "header"> {inboundName}'s' Contact Info</h1>
+            <p>{location.state.inboundObject.work_email}</p>
+            <p>{location.state.inboundObject.personal_email}</p>
+            <p>{location.state.inboundObject.phone_number}</p>
+
+            <h1>Clicking a Sponsor Will Assign Them To {inboundName} </h1>
+            {sponsors.map((i) => {
                     return(
                         <li className="card">
                             <>
-                                <button onClick = {() => patchHandler(inbounds)} className = "postButton"    >
+                                <button onClick = {() => patchHandler(i)} className = "postButton"    >
                                     <h4 >{i.rank} </h4>
                                     <h4 >{i.first_name} </h4>
                                     <h4 >{i.last_name} </h4>
@@ -80,5 +78,7 @@ change to assigning sponsor */}
             </div>
         </div>
         )
+                    }
+        else{return <h1>loading</h1>}
 }
 

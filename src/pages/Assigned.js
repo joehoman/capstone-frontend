@@ -46,7 +46,7 @@ if (inbounds){
                     return(
                         <div className="assignedCard">
                             <>
-                                <button   onClick = {() => clickHandler(i)} className = "postButton" >
+                                <button onClick = {() => clickHandler(i)} className = "postButton" >
                                     <h4  >{`${i.rank} ${i.first_name} ${i.last_name}`} </h4>
                                 </button>
                             </>

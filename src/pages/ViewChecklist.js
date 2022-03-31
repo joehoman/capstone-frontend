@@ -66,7 +66,7 @@ export default function ViewChecklist(){
                     </div>
 
                     <div className="forms">
-                        <div className = "login-form">
+                        <div className = "checklist-form">
                             <h2>Add Task</h2>
                             <form onSubmit={taskHandler}>
                                 <div>

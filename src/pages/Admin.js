@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //COMPONENTS
 import UserDetails from '../components/UserDetails.js';
@@ -13,8 +14,8 @@ import {
 } from '@mui/material';
 
 export default function AdminDashboard(){
-
-    const [allUsers, setAllUsers] = useState(['test'])
+    const navigate = useNavigate();
+    const [allUsers, setAllUsers] = useState([])
     const [unassigned, setUnassigned] = useState(false)
     const [inbound, setInbound] = useState(false)
     const [sponsor, setSponsor] = useState(false)
@@ -23,23 +24,54 @@ export default function AdminDashboard(){
     useEffect(function(){
         fetch(`${process.env.REACT_APP_API_URL}/users`)
         .then(response => response.json())
-        .then(response => {
-            setAllUsers([...response])
-            setLists()
-            console.log('litttle string', allUsers)
-        })
-        // .then(response => {
-        //     console.log('allUsers', allUsers)
-        //     console.log('response', response)
-        //     return response
-        // })
-        // .then(response => {
-        //     setLists()
-        //     // setTimeout(() => console.log('log in fetch', unassigned, sponsor, inbound), 5000)
-        // })
-        // .then(console.log("unassigned:" unassigned "Inbound:" inbound "sponsor:" sponsor))
+        .then(response => setAllUsers([...response]))
         .catch((err) => console.error(err))
     },[]);
+
+    useEffect(() => {
+        if(allUsers.length < 1) return
+
+        let inboundArray = [];
+        let sponsorArray = [];
+        let unassignedArray =[];
+
+        for (let i = 0; i < allUsers.length; i++){
+            if (allUsers[i].sponsor_id){
+                inboundArray.push(allUsers[i])
+                console.log('inbound Array', inboundArray);
+                // return setInbound(inboundArray)
+            }
+            if (allUsers[i].role === "sponsor"){
+                sponsorArray.push(allUsers[i])
+                console.log('Sponsor Array', sponsorArray)
+
+            }
+            if (allUsers[i].sponsor_id === null) {
+                unassignedArray.push(allUsers[i])
+                console.log('unassigned array', unassignedArray)
+            }
+        }
+
+        setInbound([...inboundArray])
+        setSponsor([...sponsorArray])
+        setUnassigned([...unassignedArray])
+
+
+    }, [allUsers])
+
+    const unassignedClickHandler = (inboundObject) => {
+        navigate("/admin/unassigned/details", {state:{inboundObject:inboundObject}})
+    }
+
+     const inboundClickHandler = (inboundObject) => {
+        navigate("/assigned/inbound/details", {state:{inboundObject:inboundObject}})
+    }
+
+
+     const sponsorClickHandler = (inboundObject) => {
+        navigate("/assigned/inbound/details", {state:{inboundObject:inboundObject}})
+    }
+
 
     function unassignedRender (){
 
@@ -49,7 +81,7 @@ export default function AdminDashboard(){
                 <Grid container spacing={3} justifyContent="center">
                     {unassigned.map((i) => (
                         <>
-                            <Grid item xs={8}>
+                            <Grid item xs={8} onClick = {() => unassignedClickHandler(i)}>
                                 <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
                             </Grid>
                         </>
@@ -67,7 +99,7 @@ export default function AdminDashboard(){
                 <Grid container spacing={3} justifyContent="center">
                     {inbound.map((i) => (
                         <>
-                            <Grid item xs={8}>
+                            <Grid item xs={8} onClick = {() => inboundClickHandler(i)}>
                                 <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
                             </Grid>
                         </>
@@ -87,7 +119,7 @@ export default function AdminDashboard(){
                 <Grid container spacing={3} justifyContent="center">
                     {sponsor.map((i) => (
                         <>
-                            <Grid item xs={8}>
+                            <Grid item xs={8} >
                                 <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
                             </Grid>
                         </>
@@ -96,39 +128,6 @@ export default function AdminDashboard(){
             </>
         )
     }
-
-
-
-    function setLists() {
-        console.log('set list started')
-        const inboundArray = [];
-        const sponsorArray = [];
-        const unassignedArray =[]
-
-        for (let i = 0; i < allUsers.length; i++){
-            if (allUsers[i].sponsor_id){
-                inboundArray.push(allUsers[i])
-                console.log('inbound Array', inboundArray);
-                // return setInbound(inboundArray)
-            }
-            if (allUsers[i].role === "sponsor"){
-                sponsorArray.push(allUsers[i])
-                console.log('Sponsor Array', sponsorArray)
-
-            }
-            if (allUsers[i].sponsor_id === null) {
-                unassignedArray.push(allUsers[i])
-                console.log('unassigned array', unassignedArray)
-            }
-        }
-
-            setInbound(inboundArray)
-            setSponsor(sponsorArray)
-            setUnassigned(unassignedArray)
-     }
-
-
-     if(sponsor){console.log(sponsor)}
 
     return allUsers ? (
          <>
@@ -147,7 +146,7 @@ export default function AdminDashboard(){
                 {unassignedRender()}
                 {inboundRender()}
                 {sponsorRender()}
-                {/* {window.location.reload()} */}
+
             </Box>
 
         </>
