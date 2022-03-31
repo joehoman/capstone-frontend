@@ -23,8 +23,7 @@ const navigate = useNavigate();
     const submitHandler = async (e) => {
 
         e.preventDefault()
-        // fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
-        fetch(`http://localhost:8080/users/login`, {
+        fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
