@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+## Embark
+Embark is a React + Express Full-Stack Application that is fully deployed using Heroku. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🎉 UI Features
+The React App has the following functionalities:
+- 🌎A home page that has Navbar to allow for users to easily navigate the webpage. 
+- 🚀Sponsors and inbound guardians can register a new account and select their role. 
+- 📬 Once a sponsor is logged in, they can see a list of inbound guardians attached to them to get their contact information.
+- 🧾 Once an inbound guardian is logged in, they can see a list of their tasks and their sponsor's contact information. 
+- ✏ An administrator can log in to assign inbound guardians to a sponsor. 
+- 📑 Sponsors and adminstrators can add tasks to an inbound guardian's checklist.  
 
-## Available Scripts
+## 🏞 Background 
+This project was designed with the intent of replacing the paper in-processing checklists. This website allows for a central location for sponsors and inbound guardians to easily get contact information for each other and to see required tasks for upcoming PCS moves. 
 
-In the project directory, you can run:
+##  🚚 Website in Use
+Here is an image of the Home Page:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Here is an image of the inbound guardian's dashboard: 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+Here is an image of the sponsor's dashboard:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Here is an image of the admin's dashboard: 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## 🎊 Using the React App
+Get more information about React here: https://reactjs.org/.
+It was styled using some MUI: https://mui.com/.
+Testing was completed using Cypress: https://www.cypress.io/ and Jest: https://jestjs.io/.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠 Server Development
+The following instructions are for those who want to develop the API on a local server.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🖥️ Server Architecture 
+- The server was made using Express.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 💿 How to install repo
+Fork this repo, then clone it onto your machine.
 
-## Learn More
+### 🤲 Cloning and Installing Packages
+The following dependencies need to be installed with ``` npm install ``` 
+- body-parser 
+- dotenv
+- express
+- jest
+- knex
+- morgan
+- nodemon
+- pg
+- supertest
+- bcrypt
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🔥 Environment Variables
+Make a .env file and set the CONNECTION_STRING to equal the location of your database. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 🤓 Database Requirements
+ZaaS uses a PostgreSQL docker container. Tables are created programaticly, but you will have to create the database throught the psql CLI.
+1. Pull the PostgreSQL docker container.
 
-### Code Splitting
+    ``` docker pull postgres ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. Create volume, turn on container, log into container
+    1.  ```mkdir -p $HOME/docker/volumes/postgres```
+    
+    2.  ```docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres```
 
-### Analyzing the Bundle Size
+    3. ```docker ps -a```
+    
+    4. Copy the container ID from the output
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    5. ``` docker exec -it <PSQL-Container-ID> bash ```
+3. Create a DB called " zork_db "
 
-### Making a Progressive Web App
+    ```dbcreate -U postgres zork_db```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+##  🚀 Database Schema
+This was made with PostgreSQL DB to persist user data, maintain services, maintain orders, and provide relations between orders and services.
+![image](https://user-images.githubusercontent.com/96899068/158829397-8b096b96-d50d-43da-a083-5056517d493a.png)
 
-### Advanced Configuration
+This schema is created through the Knex Migrations and is built with command: ``` npx knex migrate:latest ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
