@@ -21,11 +21,13 @@ export default function Inbound() {
 
 
     useEffect(function(){
-        fetch(`${process.env.REACT_APP_API_URL}/sponsor/${userInfo.sponsorID}`)
+        if (userinfo.sponsorID !== null){
+            fetch(`${process.env.REACT_APP_API_URL}/sponsor/${userInfo.sponsorID}`)
         .then(response => response.json())
         // .then(response => console.log(response))
         .then(response => setSponsorInfo(response[0]))
         .catch((err) => console.error(err))
+        }
     }, []);
 
     return sponsorInfo !== false ? (
