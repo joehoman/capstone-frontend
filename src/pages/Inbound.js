@@ -17,20 +17,18 @@ import {
 export default function Inbound() {
 
     const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem("userInfo")))
-    const [sponsorInfo, setSponsorInfo] = useState(false);
+    const [sponsorInfo, setSponsorInfo] = useState({});
 
 
     useEffect(function(){
-        if (userInfo.sponsorID !== null){
         fetch(`${process.env.REACT_APP_API_URL}/sponsor/${userInfo.sponsorID}`)
         .then(response => response.json())
         // .then(response => console.log(response))
         .then(response => setSponsorInfo(response[0]))
         .catch((err) => console.error(err))
-        }
-    }, []);
+    }, [sponsorInfo]);
 
-    return sponsorInfo !== false ? (
+    return sponsorInfo ? (
         <>
         <div className="inboundWrapper">
             <div className="inboundLeft">
