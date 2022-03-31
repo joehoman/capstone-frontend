@@ -78,10 +78,10 @@ export default function AdminDashboard(){
             return currentGuardianList !== 'unassigned_guardians' ? null : (
             <>
             <h3>Unassigned Guardians:</h3>
-                <Grid container spacing={3} justifyContent="center">
+                <Grid justifyContent="center">
                     {unassigned.map((i) => (
                         <>
-                            <Grid item xs={8} onClick = {() => unassignedClickHandler(i)}>
+                            <Grid sx={{paddingTop: 2, paddingBottom: 2}} item xs={8} onClick = {() => unassignedClickHandler(i)}>
                                 <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
                             </Grid>
                         </>
@@ -114,10 +114,10 @@ export default function AdminDashboard(){
         return currentGuardianList !== 'sponsor_guardians' ? null : (
             <>
             <h3>Sponsor Guardians:</h3>
-                <Grid container spacing={3} justifyContent="center">
+                <Grid justifyContent="center">
                     {sponsor.map((i) => (
                         <>
-                            <Grid item xs={8} onClick = {() => sponsorClickHandler(i)}>
+                            <Grid sx={{paddingTop: 2, paddingBottom: 2}} item xs={8} onClick = {() => sponsorClickHandler(i)}>
                                 <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
                             </Grid>
                         </>
@@ -131,7 +131,7 @@ export default function AdminDashboard(){
 
          <>
             <div className = "adminWrapper">
-                <div className = "adminWelcome">
+                <div className = "welcome">
                     <h2>Administrator page</h2>
                     <br></br>
                     <p>Please select a list in the drop down menu to view or make changes to any given member within it.</p>

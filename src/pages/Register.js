@@ -73,10 +73,10 @@ export default function Register (){
                 <div className = 'rankRegister'>
                     <RuxSelect label= "Rank" name="rank" id="rank" onRuxchange={(e) => setRank(e.target.value)}>
                         <RuxOption value=" " label = " "> </RuxOption>
-                        <RuxOption value="Spc 1" label="Specialist 1"></RuxOption>
-                        <RuxOption value="Spc 2" label ="Specialist 2"> </RuxOption>
-                        <RuxOption value="Spc 3" label ="Specialist 3"> </RuxOption>
-                        <RuxOption value="Spc 4"label ="Specialist 4"> </RuxOption>
+                        <RuxOption value="Spc1" label="Specialist 1"></RuxOption>
+                        <RuxOption value="Spc2" label ="Specialist 2"> </RuxOption>
+                        <RuxOption value="Spc3" label ="Specialist 3"> </RuxOption>
+                        <RuxOption value="Spc4"label ="Specialist 4"> </RuxOption>
                         <RuxOption value="Sgt" label="Sergeant"></RuxOption>
                         <RuxOption value="TSgt" label ="Technical Sergeant"> </RuxOption>
                         <RuxOption value="MSgt" label ="Master Sergeant"> </RuxOption>

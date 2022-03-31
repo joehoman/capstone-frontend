@@ -41,14 +41,6 @@ color:white
 }
 
 
-.adminWelcome{
-  text-align: center;
-  width: 75%;
-  margin: 40px 0;
-  padding: 5px 50px;
-  border: 1px solid;
-}
-
 .adminList {
   display: flex;
   flex-direction: column;
@@ -67,19 +59,19 @@ color:white
 }
 
 
-.checklistWelcome{
+.welcome{
   text-align: center;
   width: 75%;
-  margin: 40px 0;
+  margin: 40px auto;
   padding: 5px 50px;
-  border: 1px solid;
+  box-shadow: 0 0 15px 2px gray;
 }
 
 
 .checklist-form{
   width: 75%;
   padding: 10% 10%;
-  margin: 30px 0;
+  margin: 30px auto;
   box-shadow: 0 0 15px 2px gray;
   display: flex;
   flex-direction: column;
@@ -110,15 +102,6 @@ color:white
   align-items: center;
 }
 
-.assignedWelcome{
-  text-align: center;
-  width: 75%;
-  margin: 40px 0;
-  padding: 5px 50px;
-  border: 2px solid;
-}
-
-
 .inboundWrapper {
   width:100%;
   height: 100vh;
@@ -127,21 +110,12 @@ color:white
 }
 
 .inboundLeft {
-  width: 90%;
-  margin-left: 100px;
-}
-
-.inboundWelcome {
-  width: 90%;
-  text-align: center;
-  margin: 40px 0;
-  padding: 5px 50px;
-  border: 2px solid;
+  width: 80%;
+  margin-left: 0 auto;
 }
 
 .inboundTasks {
-  margin: 0 auto;
-  border-left: 2px solid;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -156,15 +130,10 @@ color:white
   padding-top: 20px;
 }
 
-.postButton{
-  width: 200px;
-}
-
-
-
 .task{
+  margin-bottom: 15px;
   width: 90%;
-  border: 1px solid;
+  box-shadow: 0 0 5px 2px gray;
   padding: 0 5px;
   display: flex;
   flex-direction: column;
@@ -200,27 +169,18 @@ color:white
   align-items: center;
 }
 
-.homeWelcome{
-  text-align: center;
-  border: 2px solid;
-  width: 75%;
-  margin: 40px 0;
-  padding: 5px 50px;
-
-}
 
 .homeSponsor{
   padding: 30px 50px;
   /* margin: 30px 0; */
-  border: 2px solid;
+  box-shadow: 0 0 15px 2px gray;
   width: 70%;
   margin-bottom: 10px;
 }
 
 .homeInbound{
   padding: 30px 50px;
-  /* margin: 30px 0; */
-  border: 2px solid;
+  box-shadow: 0 0 15px 2px gray;
   width: 70%;
 }
 

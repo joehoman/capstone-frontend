@@ -21,13 +21,24 @@ export default function ViewChecklist(){
     const [dueDate, setDueDate] = useState("")
     //sets description/duedate of added task
 
+    const[sponsor, setSponsor] = useState(false)
+
      useEffect(function(){
             fetch(`${process.env.REACT_APP_API_URL}/tasks/user/${location.state.inboundObject.id}`)
             .then(response => response.json())
-            .then(response => setTasks([response]))
+            .then(response => setTasks(response))
             .catch((err) => console.error(err))
     },[]);
     //fetches all tasks for user that was clicked on and sets Tasks
+
+
+    useEffect(function(){
+        fetch(`${process.env.REACT_APP_API_URL}/users/sponsor/${location.state.inboundObject.sponsor_id}`)
+        .then(response => response.json())
+        .then(response => setSponsor(response))
+        .catch((err) => console.error(err))
+},[]);
+    //fetches sponsor's name
 
 
     function taskHandler(e){
@@ -49,17 +60,20 @@ export default function ViewChecklist(){
         });
     };
 
-    if (tasks !== false){
-        //only render once fetch is complete
+    if (tasks !== false && sponsor !== false){
+        console.log(sponsor)
+
         return (
             <div className="inboundWrapper">
                  <div className="inboundLeft">
-                    <div className="checklistWelcome">
+                    <div className="welcome">
                         <h1 className = "header">{`${inboundName}'s`} Contact Info</h1>
                         <p>{location.state.inboundObject.work_email}</p>
                         <p>{location.state.inboundObject.personal_email}</p>
                         <p>{location.state.inboundObject.phone_number}</p>
+                        <p>Sponsor: {sponsor[0].rank} {sponsor[0].last_name}</p>
                     </div>
+
 
                     {/* <div className="forms"> */}
                         <div className = "checklist-form">
@@ -78,7 +92,7 @@ export default function ViewChecklist(){
                 </div>
                 <div className="inboundTasks">
                     <h2 className = "header">{`${inboundName}'s`} Tasks</h2>
-                        {tasks[0].map((tasks, i) => {
+                        {tasks.map((tasks, i) => {
                             return(
                                 <div className = "task" >
                                     <h3>{tasks.task}</h3>
@@ -89,9 +103,8 @@ export default function ViewChecklist(){
                     </div>
             </div>
         )
-
     } else {
-        return <h1> Internal Error </h1>;
+        return <h1> Loading </h1>;
     }
 }
 

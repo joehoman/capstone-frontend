@@ -32,10 +32,10 @@ export default function Inbound() {
         <>
         <div className="inboundWrapper">
             <div className="inboundLeft">
-                <div className="inboundWelcome">
+                <div className="welcome">
                     <h2>Welcome {userInfo.rank} {userInfo.lastName}</h2>
-                    <p>This is your inbound dashboard. Please navigate through your in-processing checklist below.
-                        For any additional information, we have assigned you a sponsor. Please reach out to them with any questions you may have.</p>
+                    <p>This is your inbound dashboard. Please navigate through your in-processing checklist.
+                        For any additional information, please reach out to your sponsor with any questions you may have.</p>
                 </div>
                 <div className="inboundSponsor">
                     <h3>Sponsor Details:</h3>
@@ -57,10 +57,10 @@ export default function Inbound() {
         <>
         <div className="inboundWrapper">
             <div className="inboundLeft">
-                <div className="inboundWelcome">
+                <div className="welcome">
                     <h2>Welcome {userInfo.rank} {userInfo.lastName}</h2>
-                    <p>This is your inbound dashboard. Please navigate through your in-processing checklist below.
-                        For any additional information, we have assigned you a sponsor. Please reach out to them with any questions you may have.</p>
+                    <p>This is your inbound dashboard. Please navigate through your in-processing checklist.
+                    For any additional information, please reach out to your sponsor with any questions you may have.</p>
                 </div>
                 <div className="inboundSponsor">
                     <h3>Sponsor Details:</h3>

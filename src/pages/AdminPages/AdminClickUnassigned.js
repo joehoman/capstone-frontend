@@ -2,6 +2,15 @@
 
 import {useState, useEffect} from 'react';
 import React, { Link, useNavigate, useLocation } from 'react-router-dom';
+import UserDetails from '../../components/UserDetails.js';
+
+//STYLING
+import { styled } from '@mui/material/styles';
+import {
+    Box,
+    Grid,
+    LinearProgress
+} from '@mui/material';
 
 
 export default function AdminClickUnassigned(){
@@ -56,31 +65,29 @@ export default function AdminClickUnassigned(){
         return (
 
             <div className="column">
-            <div className="row">
+            <div className="welcome">
                 <h1 className = "header"> {inboundName}'s' Contact Info</h1>
                 <p>{location.state.inboundObject.work_email}</p>
                 <p>{location.state.inboundObject.personal_email}</p>
                 <p>{location.state.inboundObject.phone_number}</p>
 
-
+            </div>
             <h2>Clicking a Sponsor Will Assign Them To {inboundName} </h2>
             {sponsors.map((i) => {
                     return(
-                        <ul className="card">
-                            <>
-                                <button onClick = {() => patchHandler(i)} className = "postButton"    >
-                                    <h4 >{i.rank} </h4>
-                                    <h4 >{i.first_name} </h4>
-                                    <h4 >{i.last_name} </h4>
-                                </button>
-                            </>
-                        </ul>
+                     <>
+                        <Box data-testid="grid-container" sx={{ flexGrow: 1 }}>
+                            <Grid sx={{paddingTop: 2, paddingBottom: 2}} item xs={8} onClick = {() => patchHandler(i)(i)}>
+                                <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
+                            </Grid>
+                        </Box>
+                    </>
                     ) }
                 )}
-        </div>
+
         </div>
         )
                     }
-        else{return <h1>Internal Error</h1>}
+        else{return <h1>loading...</h1>}
 }
 

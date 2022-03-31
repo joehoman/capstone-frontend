@@ -36,7 +36,7 @@ if (inbounds){
     return (
 
         <div className="assignedWrapper">
-            <div className="assignedWelcome">
+            <div className="welcome">
                 <h1>Welcome {userInfo.rank} {userInfo.lastName}</h1>
                 <p>This is your sponsor dashboard. Please select an inbound Guardian to review their information or assign them additional tasks.</p>
             </div>

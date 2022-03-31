@@ -2,6 +2,15 @@
 //This page lists users assigned to the logged in sponsor
 import {useState, useEffect} from 'react';
 import React, { Link, useNavigate, useLocation } from 'react-router-dom';
+import UserDetails from '../../components/UserDetails.js';
+
+//STYLING
+import { styled } from '@mui/material/styles';
+import {
+    Box,
+    Grid,
+    LinearProgress
+} from '@mui/material';
 
 // need to post to tasks database for their inbound
 // need to get all inbound
@@ -24,7 +33,7 @@ export default function AdminClickSponsor() {
 },[]);
 
 const clickHandler = (inboundObject) => {
-    navigate("/assigned/inbound/details", {state:{inboundObject:inboundObject}})
+    navigate("/assigned/inbound/details", {state:{inboundObject:inboundObject,sponsorName:sponsorName}})
 }
 
 
@@ -34,22 +43,23 @@ if (inbounds){
     return (
 
         <div className="assignedWrapper">
-            <div className="assignedWelcome">
+            <div className="welcome">
                 <h1>Welcome {userInfo.rank} {userInfo.lastName}</h1>
-                <p>These Guardians are assigned to {sponsorName} This is your admin dashboard. Please select an inbound Guardian to review their information or assign them additional tasks.</p>
+                <p>These Guardians are assigned to {sponsorName}. This is your admin dashboard. Please select an inbound Guardian to review their information or assign them additional tasks.</p>
             </div>
 
-            <h1 className = "header">{sponsorName}'s Inbounds</h1>
+            <h2 className = "header">{sponsorName}'s Inbounds</h2>
                 {inbounds.map((i) => {
                     return(
-                        <div className="assignedCard">
-                            <>
-                                <button onClick = {() => clickHandler(i)} className = "postButton" >
-                                    <h4  >{`${i.rank} ${i.first_name} ${i.last_name}`} </h4>
-                                </button>
-                            </>
-                        </div>
 
+                    <>
+                        <Box data-testid="grid-container" sx={{ flexGrow: 1 }}>
+                        <Grid sx={{paddingTop: 2, paddingBottom: 2}} item xs={8} onClick = {() => clickHandler(i)}>
+                            <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
+                        </Grid>
+                        </Box>
+
+                    </>
                     )
                 })}
 
@@ -57,6 +67,6 @@ if (inbounds){
     )
 
 } else {
-    return <h1>loading </h1>;
+    return <h1>loading... </h1>;
 }
 }
