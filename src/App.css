@@ -145,10 +145,8 @@ color:white
 
 .inboundSponsor{
   width: 75%;
-  margin: 15px 0;
-  padding: 5px 50px;
-
-
+  margin: 15px auto;
+  /* padding: 5px 50px; */
 }
 
 .homePage {

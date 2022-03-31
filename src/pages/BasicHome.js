@@ -24,7 +24,7 @@ export default function () {
 
                 </div>
                 <div class = 'homeInbound'>
-                    <h3> Unregistered Guardians, please sign up to get your sponsor's contact information and start working on your in-processing checklist. To recieve sponsor status, contact your CSS.</h3>
+                    <h3> Unregistered Guardians, please sign up to get your sponsor's contact information and start working on your in-processing checklist. </h3>
                     <Link to="/register">
                         <RuxButton type="button" >Sign Up</RuxButton>
                     </Link>

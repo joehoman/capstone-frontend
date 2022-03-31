@@ -19,7 +19,7 @@ export default function Assigned() {
 
     useEffect(function(){
         //fetch all tasks based on work email neex to add backend method and fix URL
-        fetch(`${process.env.REACT_APP_API_URL}/sponsor/user/${userInfo.id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sponsor/user/${userInfo.id}`, {mode: "cors"})
         .then(response => response.json())
         .then(response => setInbounds(response))
         .catch((err) => console.error(err))

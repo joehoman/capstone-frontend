@@ -22,7 +22,7 @@ export default function AdminDashboard(){
     const [currentGuardianList, setCurrentGuardianList] = useState('');
 
     useEffect(function(){
-        fetch(`${process.env.REACT_APP_API_URL}/users`)
+        fetch(`${process.env.REACT_APP_API_URL}/users`, {mode: "cors"})
         .then(response => response.json())
         .then(response => setAllUsers([...response]))
         .catch((err) => console.error(err))

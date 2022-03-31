@@ -24,7 +24,7 @@ export default function ViewChecklist(){
     const[sponsor, setSponsor] = useState(false)
 
      useEffect(function(){
-            fetch(`${process.env.REACT_APP_API_URL}/tasks/user/${location.state.inboundObject.id}`)
+            fetch(`${process.env.REACT_APP_API_URL}/tasks/user/${location.state.inboundObject.id}`, {mode: "cors"})
             .then(response => response.json())
             .then(response => setTasks(response))
             .catch((err) => console.error(err))
@@ -33,7 +33,7 @@ export default function ViewChecklist(){
 
 
     useEffect(function(){
-        fetch(`${process.env.REACT_APP_API_URL}/users/sponsor/${location.state.inboundObject.sponsor_id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/users/sponsor/${location.state.inboundObject.sponsor_id}`, {mode: "cors"})
         .then(response => response.json())
         .then(response => setSponsor(response))
         .catch((err) => console.error(err))
@@ -45,6 +45,7 @@ export default function ViewChecklist(){
        e.preventDefault()
         fetch(`${process.env.REACT_APP_API_URL}/sponsor/addtask`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -83,7 +84,7 @@ export default function ViewChecklist(){
                                     <RuxInput label="Task Description" onRuxinput={(e) => setDescription(e.target.value)} type="text" />
                                 </div>
                                 <div>
-                                    <RuxInput label="Due Date" onRuxinput={(e) => setDueDate(e.target.value)} type="text" />
+                                    <RuxInput label="Due Date" placeholder="DD/MM/YY" onRuxinput={(e) => setDueDate(e.target.value)} type="text" />
                                 </div>
                                     <button type="submit" className = "submitBtn">Add</button>
                             </form>

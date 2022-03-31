@@ -21,12 +21,12 @@ export default function Inbound() {
 
 
     useEffect(function(){
-        fetch(`${process.env.REACT_APP_API_URL}/sponsor/${userInfo.sponsorID}`)
+        fetch(`${process.env.REACT_APP_API_URL}/sponsor/${userInfo.sponsorID}`, {mode: "cors"})
         .then(response => response.json())
         // .then(response => console.log(response))
         .then(response => setSponsorInfo(response[0]))
         .catch((err) => console.error(err))
-    }, [sponsorInfo]);
+    }, []);
 
     return sponsorInfo ? (
         <>
@@ -40,7 +40,7 @@ export default function Inbound() {
                 <div className="inboundSponsor">
                     <h3>Sponsor Details:</h3>
                     <Box data-testid="grid-container" sx={{ flexGrow: 1, paddingTop: 2, paddingBottom: 5 }}>
-                        <Grid container spacing={3} justifyContent="left">
+                        <Grid container spacing={3} justifyContent="center">
                             <Grid item xs={8}>
                                 <UserDetails rank={sponsorInfo.rank} first_name={sponsorInfo.first_name} last_name={sponsorInfo.last_name} work_email={sponsorInfo.work_email} phone_number={sponsorInfo.phone_number} />
                             </Grid>

@@ -29,8 +29,9 @@ export default function Register (){
         e.preventDefault()
 
         // fetch(`${process.env.REACT_APP_API_URL}/register`, {
-        fetch(`${process.env.REACT_APP_API_URL}/register`, {
+        fetch(`${process.env.REACT_APP_API_URL}/register`,{
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },

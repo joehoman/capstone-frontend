@@ -25,6 +25,7 @@ const navigate = useNavigate();
         e.preventDefault()
         fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -46,11 +47,9 @@ const navigate = useNavigate();
             <h1>Please Login</h1>
             <form className="login-form" onSubmit={submitHandler}>
                 <p>
-
-                    <RuxInput size="large" type="text" label="Email" placeholder="Email@spaceforce.mil" onRuxinput={(e) => setWorkEmail(e.target.value)} type="text" />
+                    <RuxInput size="large" type="text" label="Email" placeholder="Email@spaceforce.mil" onRuxinput={(e) => setWorkEmail(e.target.value)}/>
                 </p>
-                <p >
-
+                <p>
                     <RuxInput label="Password" type="password"onRuxinput={(e) => setPassword(e.target.value)} />
                 </p>
                 <button type="submit" className = "submitBtn">Login</button>
