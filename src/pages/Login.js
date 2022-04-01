@@ -46,12 +46,12 @@ const navigate = useNavigate();
         <div className="forms">
             <h1>Please Login</h1>
             <form className="login-form" onSubmit={submitHandler}>
-                <p>
-                    <RuxInput size="large" type="text" label="Email" placeholder="Email@spaceforce.mil" onRuxinput={(e) => setWorkEmail(e.target.value)}/>
-                </p>
-                <p>
-                    <RuxInput label="Password" type="password"onRuxinput={(e) => setPassword(e.target.value)} />
-                </p>
+                <div>
+                    <RuxInput size="medium" type="email" label="Email" placeholder="Email@spaceforce.mil" onRuxinput={(e) => setWorkEmail(e.target.value)}/>
+                </div>
+                <div>
+                    <RuxInput size="medium" label="Password" type="password"onRuxinput={(e) => setPassword(e.target.value)} />
+                </div>
                 <button type="submit" className = "submitBtn">Login</button>
             </form>
 

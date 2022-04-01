@@ -5,6 +5,13 @@ import UserDetails from '../components/UserDetails.js';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { styled } from '@mui/material/styles';
+import {
+    Box,
+    Grid,
+    LinearProgress
+} from '@mui/material';
+
 // need to post to tasks database for their inbound
 // need to get all inbound
 export default function Assigned() {
@@ -35,7 +42,7 @@ if (inbounds){
 
     return (
 
-        <div className="assignedWrapper">
+        <div className="column">
             <div className="welcome">
                 <h1>Welcome {userInfo.rank} {userInfo.lastName}</h1>
                 <p>This is your sponsor dashboard. Please select an inbound Guardian to review their information or assign them additional tasks.</p>
@@ -44,13 +51,15 @@ if (inbounds){
             <h1 className = "header">My Inbounds</h1>
                 {inbounds.map((i) => {
                     return(
-                        <div className="assignedCard">
-                            <>
-                                <button onClick = {() => clickHandler(i)} className = "postButton" >
-                                    <h4  >{`${i.rank} ${i.first_name} ${i.last_name}`} </h4>
-                                </button>
-                            </>
-                        </div>
+                        <>
+                        <Box data-testid="grid-container" sx={{ flexGrow: 1 }}>
+                            <Grid sx={{paddingTop: 2, paddingBottom: 2}} item xs={8} onClick = {() => clickHandler(i)}>
+                                <UserDetails rank={i.rank} first_name={i.first_name} last_name={i.last_name} work_email={i.work_email} phone_number={i.phone_number}/>
+                            </Grid>
+                        </Box>
+
+                    </>
+
 
                     )
                 })}

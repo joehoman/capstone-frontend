@@ -11,7 +11,7 @@ export default function () {
         <>
         <div className="homePage">
             <div className ="welcome">
-                <h2>Welcome to Embark</h2>
+                <h2>Welcome to Embark 🚀</h2>
                 <h3> This will site will help you navigate through your journey as an inbound Guardian. Embark will help you organize your PCS to provide a central and trackable way to in-process. </h3>
             </div>
             {/* <div className = "homeWrap"> */}

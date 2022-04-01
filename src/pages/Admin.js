@@ -77,7 +77,7 @@ export default function AdminDashboard(){
 
             return currentGuardianList !== 'unassigned_guardians' ? null : (
             <>
-            <h3>Unassigned Guardians:</h3>
+            <h3>Unassigned:</h3>
                 <Grid justifyContent="center">
                     {unassigned.map((i) => (
                         <>
@@ -95,7 +95,7 @@ export default function AdminDashboard(){
 
         return currentGuardianList !== 'inbound_guardians' ? null : (
             <>
-            <h3>Inbound Guardians:</h3>
+            <h3>Inbound:</h3>
                 <Grid justifyContent="center" >
                     {inbound.map((i) => (
                         <>
@@ -113,7 +113,7 @@ export default function AdminDashboard(){
 
         return currentGuardianList !== 'sponsor_guardians' ? null : (
             <>
-            <h3>Sponsor Guardians:</h3>
+            <h3>Sponsors:</h3>
                 <Grid justifyContent="center">
                     {sponsor.map((i) => (
                         <>
@@ -132,7 +132,7 @@ export default function AdminDashboard(){
          <>
             <div className = "adminWrapper">
                 <div className = "welcome">
-                    <h2>Administrator page</h2>
+                    <h2>Administrator</h2>
                     <br></br>
                     <p>Please select a list in the drop down menu to view or make changes to any given member within it.</p>
                 </div>
@@ -140,9 +140,9 @@ export default function AdminDashboard(){
                     <div className = 'userList'>
                         <RuxSelect label= "Select Guardian List" name="rank" id="rank" onRuxchange={(e) => setCurrentGuardianList(e.target.value)}>
                             <RuxOption value="" label = "select a list here..."></RuxOption>
-                            <RuxOption value="unassigned_guardians" label="Unassigned Guardians"></RuxOption>
-                            <RuxOption value="inbound_guardians" label ="Inbound Guardians"></RuxOption>
-                            <RuxOption value="sponsor_guardians" label ="Sponsor Guardians"></RuxOption>
+                            <RuxOption value="unassigned_guardians" label="Unassigned"></RuxOption>
+                            <RuxOption value="inbound_guardians" label ="Inbound"></RuxOption>
+                            <RuxOption value="sponsor_guardians" label ="Sponsors"></RuxOption>
                         </RuxSelect>
                     </div>
                     <Box data-testid="grid-container" sx={{ flexGrow: 1, paddingTop: 8, paddingBottom: 8 }}>

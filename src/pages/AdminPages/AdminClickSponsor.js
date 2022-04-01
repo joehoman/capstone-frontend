@@ -42,16 +42,15 @@ if (inbounds){
 
     return (
 
-        <div className="assignedWrapper">
+        <div className="column">
             <div className="welcome">
                 <h1>Welcome {userInfo.rank} {userInfo.lastName}</h1>
                 <p>These Guardians are assigned to {sponsorName}. This is your admin dashboard. Please select an inbound Guardian to review their information or assign them additional tasks.</p>
             </div>
 
-            <h2 className = "header">{sponsorName}'s Inbounds</h2>
+            <h2 >{sponsorName}'s Inbounds</h2>
                 {inbounds.map((i) => {
                     return(
-
                     <>
                         <Box data-testid="grid-container" sx={{ flexGrow: 1 }}>
                         <Grid sx={{paddingTop: 2, paddingBottom: 2}} item xs={8} onClick = {() => clickHandler(i)}>
@@ -61,6 +60,7 @@ if (inbounds){
 
                     </>
                     )
+
                 })}
 
         </div>

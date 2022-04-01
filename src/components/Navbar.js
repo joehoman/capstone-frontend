@@ -20,11 +20,9 @@ function Navbar(){
                         Dashboard
                     </Link>
                 </b>
-                {/* <b>
-                    <Link to="/inboundchecklist" style={{ textDecoration: 'none' }}>
-                        Checklist
-                    </Link>
-                </b> */}
+                <b>
+                        Embark🚀
+                    </b>
                     <b>
                         <Link to="/logout" style={{ textDecoration: 'none' }}>
                             Logout
@@ -53,6 +51,9 @@ function Navbar(){
                         </Link>
                     </b>
                     <b>
+                        Embark🚀
+                    </b>
+                    <b>
                         <Link to="/logout" style={{ textDecoration: 'none' }}>
                             Logout
                         </Link>
@@ -72,13 +73,15 @@ function Navbar(){
                             Dashboard
                         </Link>
                     </b>
-                    <div>
+                    <b>
+                    Embark🚀
+                    </b>
                     <b>
                         <Link to="/logout" style={{ textDecoration: 'none' }}>
                             Logout
                         </Link>
                     </b>
-                    </div>
+
                 </div>
                 </>
             )
@@ -96,6 +99,7 @@ function Navbar(){
                         Home
                     </Link>
                 </b>
+
                 <div>
                 <b>
                     <Link to="/register" style={{ textDecoration: 'none' }}>
