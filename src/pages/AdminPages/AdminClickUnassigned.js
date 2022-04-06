@@ -50,7 +50,12 @@ export default function AdminClickUnassigned(){
         .then(data => {
             console.log('Success', data);
         })
-        .then(navigate('/dashboard'))
+        .then(response =>{
+            navigate('/dashboard')
+            window.location.reload()
+           }
+        )
+
         .catch((error) => {
             console.error('Error:', error);
         });

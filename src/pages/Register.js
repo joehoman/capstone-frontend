@@ -41,8 +41,6 @@ export default function Register (){
         .then(response => response.json())
         .then(data => {
             console.log('Success', data);
-            //check to see if response data has token
-            localStorage.setItem('userInfo', JSON.stringify(data))
         })
         .then(navigate('/login'))
         .catch((error) => {
