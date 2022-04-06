@@ -1,5 +1,6 @@
 ## Embark
 Embark is a React + Express Full-Stack Application that is fully deployed using Heroku.
+This is a demo. The users aren't real, and this isn't linked to any production environment.
 
 ## Accounts for Testing
 These accounts are seeded by Knex every time the server restarts. You can also register your own account as a sponsor or inbound.

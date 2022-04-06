@@ -54,7 +54,7 @@ export default function Register (){
         <h1>Register Your Account</h1>
             <form className='register-form' onSubmit={submitHandler}>
                 <div>
-                    <RuxInput  size="large" type="text" label="Email" placeholder="Email@spaceforce.mil" onRuxinput={(e) => setWorkEmail(e.target.value)}/>
+                    <RuxInput  size="medium" type="text" label="Email" onRuxinput={(e) => setWorkEmail(e.target.value)}/>
                 </div>
 
                 <div>
